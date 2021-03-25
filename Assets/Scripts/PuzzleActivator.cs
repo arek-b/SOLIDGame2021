@@ -9,6 +9,7 @@ public class PuzzleActivator : MonoBehaviour
     [SerializeField] private float _restartTime = 5f;
     [SerializeField] private GameObject _puzzleGlow;
     private bool _activated = false;
+    private bool _deactivated = false;
     private Player _playerScr;
     private Puzzle _puzzle;
     private void Start()
@@ -17,11 +18,12 @@ public class PuzzleActivator : MonoBehaviour
     }
     void Update()
     {
-        if(_activated == true)
+        if (_activated == true)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
                 _puzzle.Activate();
+                _deactivated = true;
                 if (_timeRestart == true)
                 {
                     StartCoroutine(Reset());
@@ -31,24 +33,32 @@ public class PuzzleActivator : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>())
+        if (_deactivated == false)
         {
-            _playerScr = other.GetComponent<Player>();
-            _puzzleGlow.SetActive(true);
-            _activated = true;
+            if (other.GetComponent<Player>())
+            {
+                _playerScr = other.GetComponent<Player>();
+
+                _puzzleGlow.SetActive(true);
+                _activated = true;
+            }
         }
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Player>())
+        if (_deactivated == false)
         {
-            _activated = false;
-            _puzzleGlow.SetActive(false);
+            if (other.GetComponent<Player>())
+            {
+                _activated = false;
+                _puzzleGlow.SetActive(false);
+            }
         }
     }
     IEnumerator Reset()
     {
         yield return new WaitForSeconds(_restartTime);
         _activated = false;
+        _deactivated = false;
     }
 }
