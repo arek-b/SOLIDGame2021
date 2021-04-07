@@ -8,6 +8,7 @@ public class PuzzleActivator : MonoBehaviour
     [SerializeField] private bool _timeRestart = false;
     [SerializeField] private float _restartTime = 5f;
     [SerializeField] private GameObject _puzzleGlow;
+    [SerializeField] private ItemProvider itemProvider = null;
     private bool _activated = false;
     private bool _deactivated = false;
     private Player _playerScr;
@@ -27,6 +28,11 @@ public class PuzzleActivator : MonoBehaviour
                 if (_timeRestart == true)
                 {
                     StartCoroutine(Reset());
+                }
+
+                if (itemProvider != null && _playerScr != null)
+                {
+                    itemProvider.GiveItem(_playerScr);
                 }
             }
         }

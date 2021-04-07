@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
 public class PlayerNavigation : MonoBehaviour
 {
@@ -20,5 +21,13 @@ public class PlayerNavigation : MonoBehaviour
             return;
 
         agent.SetDestination(hit.point);
+    }
+
+    public void LookAt(Transform target, float duration)
+    {
+        Vector3 position = transform.position - target.position;
+        position.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(position);
+        transform.DORotateQuaternion(rotation, duration);
     }
 }
