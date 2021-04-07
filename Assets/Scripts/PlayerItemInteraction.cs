@@ -8,9 +8,13 @@ public class PlayerItemInteraction : MonoBehaviour
     [SerializeField] private Camera mainCamera = null;
     private const float MaxRayDistance = 100f;
     private const float LookDuration = 0.5f;
+    private InteractWithItem lastSubject = null;
+    private bool currentSubjectWasOK = false;
 
     private void Update()
     {
+        currentSubjectWasOK = false;
+
         if (player.Inventory.IsEmpty)
             return;
 
@@ -25,26 +29,37 @@ public class PlayerItemInteraction : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, MaxRayDistance))
             return;
 
-        InteractWithItem objectThatInteractsWithItem = hit.collider.gameObject.GetComponent<InteractWithItem>();
+        InteractWithItem currentSubject = hit.collider.gameObject.GetComponent<InteractWithItem>();
 
-        if (objectThatInteractsWithItem == null)
+        if (currentSubject == null)
             return;
 
-        if (objectThatInteractsWithItem.ItemType != currentItem.ItemType)
+        if (currentSubject.ItemType != currentItem.ItemType)
             return;
 
-        if (!objectThatInteractsWithItem.PlayerCanInteract())
+        if (!currentSubject.PlayerCanInteract())
             return;
 
-        objectThatInteractsWithItem.ShowInteractionCue();
-        player.Navigation.LookAt(objectThatInteractsWithItem.transform, duration: LookDuration);
+        // code within this if-statement shouldn't be called every frame
+        currentSubjectWasOK = true;
+        if (currentSubject != lastSubject)
+        {
+            currentSubject.ShowInteractionCue();
+            player.Navigation.LookAt(currentSubject.transform, duration: LookDuration);
+        }
+        lastSubject = currentSubject;
 
         if (!Input.GetMouseButtonDown(0))
             return;
 
         currentItem.TriggerAnimationOnPlayer(player, delay: LookDuration);
-        objectThatInteractsWithItem.Interact();
+        currentSubject.Interact();
+    }
 
-        // Todo: rotate the player and play animation
+    private void LateUpdate()
+    {
+        // need to reset last subject for when we mouse over the same subject again
+        if (!currentSubjectWasOK)
+            lastSubject = null;
     }
 }
