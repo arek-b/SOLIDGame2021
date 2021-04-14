@@ -13,7 +13,7 @@ public class CamSwitchTrigger : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<Player>())
+        if(other.GetComponent<PlayerModelCollider>())
         _camWorkScr.CameraSwitch(_viewNumber);
     }
 }

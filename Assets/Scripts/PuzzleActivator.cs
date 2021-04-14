@@ -41,9 +41,10 @@ public class PuzzleActivator : MonoBehaviour
     {
         if (_deactivated == false)
         {
-            if (other.GetComponent<Player>())
+            PlayerModelCollider playerModelCollider = other.GetComponent<PlayerModelCollider>();
+            if (playerModelCollider != null)
             {
-                _playerScr = other.GetComponent<Player>();
+                _playerScr = playerModelCollider.Player;
 
                 _puzzleGlow.SetActive(true);
                 _activated = true;
@@ -54,7 +55,7 @@ public class PuzzleActivator : MonoBehaviour
     {
         if (_deactivated == false)
         {
-            if (other.GetComponent<Player>())
+            if (other.GetComponent<PlayerModelCollider>())
             {
                 _activated = false;
                 _puzzleGlow.SetActive(false);

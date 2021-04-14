@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Navigation.enabled = Inventory.IsEmpty;
+        if (Navigation != null && Inventory != null)
+            Navigation.enabled = Inventory.IsEmpty;
     }
 }
