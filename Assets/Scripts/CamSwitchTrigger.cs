@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CamSwitchTrigger : MonoBehaviour
 {
-    [SerializeField] private int _viewNumber = 0;
+    [SerializeField] private int _viewNumber = 9;
     [SerializeField] private GameObject _camWorkObject;
     private CameraWork _camWorkScr;
     void Start()

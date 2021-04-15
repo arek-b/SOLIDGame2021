@@ -8,7 +8,7 @@ public class CameraWork : MonoBehaviour
     [SerializeField] private List<Transform> _views;
     [SerializeField] private float _transitionSpeed;
     private Transform _currentView;
-    private int _viewNum;
+    private int _viewNum = 9;
     void Start()
     {
         _currentView = _views[_viewNum];
