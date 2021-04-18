@@ -5,12 +5,14 @@ using UnityEngine;
 public class CameraWork : MonoBehaviour
 {
     [SerializeField] private GameObject _camera;
+    [SerializeField] private GameObject _shader;
     [SerializeField] private List<Transform> _views;
     [SerializeField] private float _transitionSpeed;
     private Transform _currentView;
     private int _viewNum = 9;
     void Start()
     {
+        _shader.SetActive(true);
         _currentView = _views[_viewNum];
     }
     public void CameraSwitch(int viewNumber)
