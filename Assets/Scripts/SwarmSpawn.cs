@@ -8,20 +8,25 @@ public class SwarmSpawn : MonoBehaviour
     [SerializeField] private GameObject _swarmContainmentUnit;
     [SerializeField] private GameObject _swarmUnit;
     [SerializeField] private Transform _swarmSpawn;
-    private GameObject _rodent; 
+    private GameObject _rodent;
+    private int _rodentAmount;
     private GameObject _rodentRequester;
     private void Start()
     {
         _swarmPool = GenerateSwarm(30);
-        _rodentRequester = RequestPrefab();
+        _rodentAmount = 30;
+        //_rodentRequester = RequestPrefab();
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            RequestPrefab();
+            //RequestPrefab();
+            _rodent = _swarmPool[_rodentAmount];
+            _rodent.SetActive(true);
             _rodent.transform.position = _swarmSpawn.position;
             _rodent.transform.rotation = _swarmSpawn.rotation;
+            _rodentAmount--;
             /*
             _rodent = Instantiate(_swarmUnit) as GameObject;
             _rodent.transform.position = _swarmSpawn.position;
@@ -40,7 +45,7 @@ public class SwarmSpawn : MonoBehaviour
         }
         return _swarmPool;
     }
-    public GameObject RequestPrefab()
+    /*public GameObject RequestPrefab()
     {
         foreach(var prefab in _swarmPool)
         {
@@ -54,5 +59,5 @@ public class SwarmSpawn : MonoBehaviour
         GameObject newPrefab = _swarmPool[_swarmPool.Count - 1];
         newPrefab.SetActive(true);
         return newPrefab;
-    }
+    }*/
 }
