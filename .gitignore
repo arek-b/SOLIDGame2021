@@ -89,3 +89,6 @@ crashlytics-build.properties
 # Log-files
 fmod.log
 fmod_editor.log
+
+# Doxygen html
+/Docs/html/

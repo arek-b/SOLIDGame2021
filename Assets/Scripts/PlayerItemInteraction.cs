@@ -2,13 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script responsible for interacting with objects using the item currently
+/// held by the player. The interaction happens via mousing over and clicking.
+/// </summary>
 public class PlayerItemInteraction : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to Player (required)
+    /// </summary>
     [SerializeField] private Player player = null;
+    /// <summary>
+    /// Reference to current Camera (required)
+    /// </summary>
     [SerializeField] private Camera mainCamera = null;
+    /// <summary>
+    /// Max raycast distance (from camera)
+    /// </summary>
     private const float MaxRayDistance = 100f;
+    /// <summary>
+    /// How long should the player character rotate to face an object that was
+    /// moused over? (Time in seconds)
+    /// </summary>
     private const float LookDuration = 0.5f;
+    /// <summary>
+    /// Last valid interactable object that the player moused over. Used for
+    /// checking if mousing over the same object we moused over in last frame.
+    /// </summary>
     private InteractWithItem lastSubject = null;
+    /// <summary>
+    /// Was the object under mouse pointer interactable on current frame?
+    /// </summary>
     private bool currentSubjectWasOK = false;
 
     private void Update()
