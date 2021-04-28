@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Trigger that changes the current camera view.
+/// </summary>
 public class CamSwitchTrigger : MonoBehaviour
 {
     [SerializeField] private int _viewNumber = 9;

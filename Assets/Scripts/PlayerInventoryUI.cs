@@ -2,6 +2,9 @@
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Displays information about current inventory state on the screen.
+/// </summary>
 public class PlayerInventoryUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI itemNameText;

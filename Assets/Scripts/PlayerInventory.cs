@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Single-item inventory.
+/// Our player's single-item inventory.
 /// </summary>
 public class PlayerInventory
 {

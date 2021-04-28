@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
 
+/// <summary>
+/// Class reponsible for navigating our player character to the point clicked by the player.
+/// </summary>
 public class PlayerNavigation : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;

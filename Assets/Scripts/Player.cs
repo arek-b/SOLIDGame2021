@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Main player class. Mostly just contains public references to other classes related to the player.
+/// </summary>
 public class Player : MonoBehaviour
 {
     public PlayerInventory Inventory { get; private set; }

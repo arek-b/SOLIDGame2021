@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Contains configuration and behavior of a puzzle.
+/// </summary>
 public class Puzzle : MonoBehaviour
 {
     private bool _activated = false;

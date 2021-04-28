@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Slightly offsets the object's main texture each frame.
+/// </summary>
 public class MovingTexture : MonoBehaviour
 {
     // Scroll main texture based on time

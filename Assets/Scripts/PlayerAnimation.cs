@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// A class responsible for controlling animations on player's model.
+/// </summary>
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;

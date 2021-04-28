@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Classs representing an item that can be placed in PlayerInventory.
+/// </summary>
 public class InventoryItem : MonoBehaviour
 {
     [SerializeField] private ItemTypes itemType = default;

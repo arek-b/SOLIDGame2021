@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls when and how the player can interact with the puzzle.
+/// </summary>
 public class PuzzleActivator : MonoBehaviour
 {
     [SerializeField] private GameObject _puzzlePiece;

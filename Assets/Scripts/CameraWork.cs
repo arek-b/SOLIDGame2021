@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Responsible for tweening between camera views.
+/// </summary>
 public class CameraWork : MonoBehaviour
 {
     [SerializeField] private GameObject _camera;

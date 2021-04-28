@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Gives the Player a specified item. Use in combination with PuzzleActivator.
+/// </summary>
 public class ItemProvider : MonoBehaviour
 {
     [SerializeField] private InventoryItem item;
