@@ -9,6 +9,7 @@ public class CamSwitchTrigger : MonoBehaviour
 {
     [SerializeField] private int _viewNumber = 9;
     [SerializeField] private GameObject _camWorkObject;
+    [SerializeField] private bool _instantSwitch = false;
     private CameraWork _camWorkScr;
     void Start()
     {
@@ -16,7 +17,7 @@ public class CamSwitchTrigger : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<PlayerModelCollider>())
-        _camWorkScr.CameraSwitch(_viewNumber);
+        if (other.GetComponent<PlayerModelCollider>())
+            _camWorkScr.CameraSwitch(_viewNumber, _instantSwitch);
     }
 }

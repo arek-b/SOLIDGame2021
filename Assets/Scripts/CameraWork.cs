@@ -18,9 +18,17 @@ public class CameraWork : MonoBehaviour
         _shader.SetActive(true);
         _currentView = _views[_viewNum];
     }
-    public void CameraSwitch(int viewNumber)
+    public void CameraSwitch(int viewNumber, bool instant)
     {
         _currentView = _views[viewNumber];
+        if(instant == true)
+        {
+            _transitionSpeed = 1000f;
+        }
+        else if (instant == false)
+        {
+            _transitionSpeed = 1f;
+        }
     }
     void LateUpdate()
     {
