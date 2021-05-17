@@ -12,6 +12,7 @@ public class PuzzleActivator : MonoBehaviour
     [SerializeField] private float _restartTime = 5f;
     [SerializeField] private GameObject _puzzleGlow;
     [SerializeField] private ItemProvider itemProvider = null;
+    [SerializeField] private PickupableObject pickupableObject = null;
     private bool _activated = false;
     private bool _deactivated = false;
     private Player _playerScr;
@@ -36,6 +37,11 @@ public class PuzzleActivator : MonoBehaviour
                 if (itemProvider != null && _playerScr != null)
                 {
                     itemProvider.GiveItem(_playerScr);
+                }
+
+                if (pickupableObject != null && _playerScr != null)
+                {
+                    pickupableObject.Interact(_playerScr.transform);
                 }
             }
         }
