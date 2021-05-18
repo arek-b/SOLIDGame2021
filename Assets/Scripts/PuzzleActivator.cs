@@ -25,6 +25,11 @@ public class PuzzleActivator : MonoBehaviour
     {
         if (_activated == true)
         {
+            if (_playerScr != null && _playerScr.Death.IsDead)
+            {
+                return;
+            }
+
             if (Input.GetKeyDown(KeyCode.F))
             {
                 _puzzle.Activate();

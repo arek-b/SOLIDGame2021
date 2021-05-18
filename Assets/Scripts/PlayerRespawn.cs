@@ -9,8 +9,13 @@ public class PlayerRespawn : MonoBehaviour
 {
     [SerializeField] private Player player;
 
+    public delegate void eventPlayerWillRespawn();
+    public static event eventPlayerWillRespawn PlayerWillRespawn;
+
     public void RespawnAt(Vector3 worldPosition)
     {
-
+        PlayerWillRespawn?.Invoke();
+        player.Navigation.NavMeshAgent.ResetPath();
+        player.Navigation.NavMeshAgent.Warp(worldPosition);
     }
 }

@@ -11,6 +11,18 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private CheckpointSystem checkpointSystem = null;
     [SerializeField] private Player player = null;
 
+    public bool IsDead { get; private set; } = false;
+
+    private void Update()
+    {
+        // for testing
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("K pressed - killing the Player");
+            CommitMurder();
+        }
+    }
+
     public void CommitMurder()
     {
         StartCoroutine(DeathCoroutine());
@@ -18,9 +30,12 @@ public class PlayerDeath : MonoBehaviour
 
     private IEnumerator DeathCoroutine()
     {
-        player.PlayerDeathUI.ShowText();
+        IsDead = true;
+        player.Navigation.NavMeshAgent.ResetPath();
+        player.DeathUI.ShowText();
         yield return new WaitForSeconds(respawnDelayDuration);
-        player.PlayerDeathUI.HideText();
-        player.PlayerRespawn.RespawnAt(checkpointSystem.LatestCheckpoint.SpawnPoint.position);
+        player.DeathUI.HideText();
+        player.Respawn.RespawnAt(checkpointSystem.LatestCheckpoint.SpawnPoint.position);
+        IsDead = false;
     }
 }

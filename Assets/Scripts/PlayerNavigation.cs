@@ -11,16 +11,22 @@ public class PlayerNavigation : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent = null;
     [SerializeField] private Camera mainCamera = null;
+    [SerializeField] private Player player = null;
     private const float MaxRayDistance = 100f;
+
+    public NavMeshAgent NavMeshAgent => agent;
 
     private void Update()
     {
+        if (player.Death.IsDead)
+            return;
+
         if (!Input.GetMouseButtonDown(0))
             return;
 
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (!Physics.Raycast(ray, out RaycastHit hit, MaxRayDistance))
+        if (!Physics.Raycast(ray, out RaycastHit hit, MaxRayDistance, layerMask: ~0, QueryTriggerInteraction.Ignore))
             return;
 
         agent.SetDestination(hit.point);

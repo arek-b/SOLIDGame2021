@@ -10,6 +10,7 @@ public class CheckpointVolume : MonoBehaviour
 {
     [SerializeField] private int checkpointNumber = 0;
     [SerializeField] private Transform spawnPoint = null;
+    [SerializeField] private Collider collider = null;
 
     public Transform SpawnPoint => spawnPoint;
 
@@ -28,6 +29,8 @@ public class CheckpointVolume : MonoBehaviour
                 timesReached++;
             if (value && timesReached == 1)
                 CheckpointReached?.Invoke(this);
+
+            Debug.Log($"Checkpoint {CheckpointNumber} reached");
         }
     }
 
@@ -52,5 +55,14 @@ public class CheckpointVolume : MonoBehaviour
             return;
 
         Reached = true;
+    }
+
+    private void OnValidate()
+    {
+        if (collider == null)
+            collider = GetComponent<Collider>();
+
+        if (collider != null)
+            collider.isTrigger = true;
     }
 }

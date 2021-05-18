@@ -17,10 +17,36 @@ public class PickupableObject : MonoBehaviour
     private bool isPickedUp = false;
 
     Transform originalParent;
+    Vector3 originalPosition;
 
     private void Awake()
     {
         originalParent = transform.parent;
+        originalPosition = transform.position;
+    }
+
+    private void OnEnable()
+    {
+        PlayerRespawn.PlayerWillRespawn += PlayerRespawn_PlayerWillRespawn;
+    }
+    private void OnDisable()
+    {
+        PlayerRespawn.PlayerWillRespawn -= PlayerRespawn_PlayerWillRespawn;
+    }
+
+    /// <summary>
+    /// Resets the object when player is about to be respawned
+    /// </summary>
+    private void PlayerRespawn_PlayerWillRespawn()
+    {
+        if (!isPickedUp)
+            return;
+
+        isPickedUp = false;
+        transform.SetParent(originalParent);
+        transform.position = originalPosition;
+        myRigidbody.isKinematic = false;
+        myCollider.enabled = true;
     }
 
     public void Interact(Transform playerTransform)
