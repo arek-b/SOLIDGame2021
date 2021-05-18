@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
     public PlayerInventory Inventory { get; private set; }
     private PlayerInventoryUI InventoryUI { get; set; }
     public PlayerNavigation Navigation { get; private set; }
+    public PlayerItemInteraction PlayerItemInteraction { get; private set; }
+    public PlayerDeath PlayerDeath { get; private set; }
+    public PlayerDeathUI PlayerDeathUI { get; private set; }
+    public PlayerRespawn PlayerRespawn { get; private set; }
     public Animator Animator { get; private set; }
 
     private void Awake()
@@ -17,6 +21,10 @@ public class Player : MonoBehaviour
         Navigation = GetComponent<PlayerNavigation>();
         InventoryUI = GetComponent<PlayerInventoryUI>();
         Inventory = new PlayerInventory(InventoryUI);
+        PlayerItemInteraction = GetComponent<PlayerItemInteraction>();
+        PlayerDeath = GetComponent<PlayerDeath>();
+        PlayerDeathUI = GetComponent<PlayerDeathUI>();
+        PlayerRespawn = GetComponent<PlayerRespawn>();
         Animator = GetComponent<Animator>();
     }
 
