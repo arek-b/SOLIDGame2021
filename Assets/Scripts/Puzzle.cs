@@ -20,31 +20,71 @@ public class Puzzle : MonoBehaviour
     [SerializeField] private bool _animate = false;
     [SerializeField] private bool _animateTimed = false;
     [SerializeField] private float _animateTime = 5f;
+    [SerializeField] private bool _keyUnlocked = true;
+    [SerializeField] private List<bool> _keys;
+    private int _keyCount = 0;
     public void Activate()
     {
-        if (_reveal == true && _revealTimed == false)
+        if (_keyUnlocked == true)
         {
-            UnCover(_revealedObjects);
+            if (_reveal == true && _revealTimed == false)
+            {
+                UnCover(_revealedObjects);
+            }
+            else if (_reveal == true && _revealTimed == true)
+            {
+                StartCoroutine(UnCoverTimeOut(_revealedObjects, _revealTime));
+            }
+            if (_hide == true && _hideTimed == false)
+            {
+                UnCover(_hiddenObjects);
+            }
+            else if (_hide == true && _hideTimed == true)
+            {
+                StartCoroutine(UnCoverTimeOut(_hiddenObjects, _hideTime));
+            }
+            if (_animate == true && _animateTimed == false)
+            {
+                Animate(_animatedObjects);
+            }
+            else if (_animate == true && _animateTimed == true)
+            {
+                StartCoroutine(AnimateTimeOut(_animatedObjects, _animateTime));
+            }
         }
-        else if (_reveal == true && _revealTimed == true)
+    }
+    public void SetKey()
+    {
+        _keys[_keyCount] = true;
+        _keyCount++;
+        if(_keyCount > _keys.Count)
         {
-            StartCoroutine(UnCoverTimeOut(_revealedObjects, _revealTime));
+            _keyCount = _keys.Count;
         }
-        if (_hide == true && _hideTimed == false)
+        for (int i = 0; i < _keys.Count; i++)
         {
-            UnCover(_hiddenObjects);
+            if (_keys[i] == false)
+            {
+                Debug.Log("You need more to unlock!");
+            }
+            else if (_keyCount >= _keys.Count)
+            {
+                _keyUnlocked = true;
+                Activate();
+            }
         }
-        else if (_hide == true && _hideTimed == true)
+    }
+    public void UnsetKey()
+    {
+        _keyCount--;
+        _keys[_keyCount] = false;
+        if(_keyCount <= 0)
         {
-            StartCoroutine(UnCoverTimeOut(_hiddenObjects, _hideTime));
+            _keyCount = 0;
         }
-        if (_animate == true && _animateTimed == false)
+        if(_keyUnlocked == true)
         {
-            Animate(_animatedObjects);
-        }
-        else if (_animate == true && _animateTimed == true)
-        {
-            StartCoroutine(AnimateTimeOut(_animatedObjects, _animateTime));
+            //Deanimate
         }
     }
     public void UnCover(List<GameObject> gameObjects)
