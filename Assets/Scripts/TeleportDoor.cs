@@ -20,7 +20,7 @@ public class TeleportDoor : MonoBehaviour
             //_playerTransform = other.transform;
             _enteringCanvasObj.SetActive(true);
             _obstacleWall.SetActive(false);
-            _playerTransform.transform.position = _exitPoint.transform.position;
+            player.Player.Respawn.RespawnAt(_exitPoint.transform.position);
             StartCoroutine(Teleport());
         }
     }
