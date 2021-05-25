@@ -26,7 +26,7 @@ public class PlayerNavigation : MonoBehaviour
 
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (!Physics.Raycast(ray, out RaycastHit hit, MaxRayDistance, layerMask: ~0, QueryTriggerInteraction.Ignore))
+        if (!Physics.Raycast(ray, out RaycastHit hit, MaxRayDistance, layerMask: 1 << 0, QueryTriggerInteraction.Ignore))
             return;
 
         agent.SetDestination(hit.point);
