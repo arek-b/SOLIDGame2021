@@ -17,13 +17,13 @@ public class PlayerDefaultPositionEditor : Editor
 
         if (GUILayout.Button(ButtonSetText))
         {
-            Undo.RecordObject(myScript, ButtonSetText);
+            Undo.RecordObject(myScript.transform, ButtonSetText);
             myScript.SetCurrentPositionAsDefault();
         }
 
         if (GUILayout.Button(ButtonRestoreText))
         {
-            Undo.RecordObject(myScript, ButtonRestoreText);
+            Undo.RecordObject(myScript.transform, ButtonRestoreText);
             myScript.RestorePosition();
         }
     }

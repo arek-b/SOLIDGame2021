@@ -46,7 +46,7 @@ public class PuzzleActivator : MonoBehaviour
 
                 if (pickupableObject != null && _playerScr != null)
                 {
-                    pickupableObject.Interact(_playerScr.transform);
+                    pickupableObject.Interact(_playerScr);
                 }
             }
         }

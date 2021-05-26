@@ -41720,7 +41720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be1491b6c6b1d941b0b090a0a254fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetWhenPickedUp: {x: 0, y: 2, z: 0}
+  offsetWhenPickedUp: {x: 0, y: 1.35, z: 1.35}
   pickingDuration: 1
   dropForce: 200
   myRigidbody: {fileID: 178539882918728379}

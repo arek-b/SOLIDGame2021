@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public PlayerDeath Death { get; private set; }
     public PlayerDeathUI DeathUI { get; private set; }
     public PlayerRespawn Respawn { get; private set; }
+    public PlayerAnimation Animation { get; private set; }
     public Animator Animator { get; private set; }
 
     private void Awake()
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
         Death = GetComponent<PlayerDeath>();
         DeathUI = GetComponent<PlayerDeathUI>();
         Respawn = GetComponent<PlayerRespawn>();
+        Animation = GetComponent<PlayerAnimation>();
         Animator = GetComponent<Animator>();
     }
 

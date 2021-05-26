@@ -8,13 +8,14 @@ using DG.Tweening;
 /// </summary>
 public class PickupableObject : MonoBehaviour
 {
-    [SerializeField] private Vector3 offsetWhenPickedUp = new Vector3(0f, 2f, 0f);
+    [SerializeField] private Vector3 offsetWhenPickedUp = new Vector3(0f, 1.35f, 1.35f);
     [SerializeField] private float pickingDuration = 1f;
     [SerializeField] private float dropForce = 200f;
     [SerializeField] private Rigidbody myRigidbody = null;
     [SerializeField] private Collider myCollider = null;
 
-    private bool isPickedUp = false;
+    private bool IsPickedUp => playerCurrentlyHolding != null;
+    private Player playerCurrentlyHolding = null;
 
     Transform originalParent;
     Vector3 originalPosition;
@@ -39,45 +40,50 @@ public class PickupableObject : MonoBehaviour
     /// </summary>
     private void PlayerRespawn_PlayerWillRespawn()
     {
-        if (!isPickedUp)
+        if (!IsPickedUp)
             return;
 
-        isPickedUp = false;
-        transform.SetParent(originalParent);
-        transform.position = originalPosition;
-        myRigidbody.isKinematic = false;
-        myCollider.enabled = true;
+        BeDropped(playerCurrentlyHolding, resetPosition: true, addForce: false);
     }
 
-    public void Interact(Transform playerTransform)
+    public void Interact(Player player)
     {
-        if (isPickedUp)
-            BeDropped(playerTransform);
+        if (IsPickedUp)
+        {
+            BeDropped(player, resetPosition: false, addForce: true);
+        }
         else
-            BePickedUp(playerTransform);
+        {
+            BePickedUp(player);
+        }
     }
 
-    private void BePickedUp(Transform playerTransform)
+    private void BePickedUp(Player player)
     {
-        if (isPickedUp)
+        if (IsPickedUp)
             return;
 
-        isPickedUp = true;
+        playerCurrentlyHolding = player;
+        playerCurrentlyHolding.Animation.StartHoldingObject();
         myRigidbody.isKinematic = true;
         myCollider.enabled = false;
-        transform.SetParent(playerTransform);
+        transform.SetParent(player.transform);
         transform.DOLocalMove(offsetWhenPickedUp, pickingDuration);
     }
 
-    private void BeDropped(Transform playerTransform)
+    private void BeDropped(Player player, bool resetPosition, bool addForce)
     {
-        if (!isPickedUp)
+        if (!IsPickedUp)
             return;
 
-        isPickedUp = false;
+        playerCurrentlyHolding.Animation.StopHoldingObject();
+        playerCurrentlyHolding = null;
         transform.SetParent(originalParent);
+        if (resetPosition)
+            transform.position = originalPosition;
         myRigidbody.isKinematic = false;
         myCollider.enabled = true;
-        myRigidbody.AddForce((playerTransform.forward * dropForce) + (playerTransform.up * dropForce));
+        if (addForce)
+            myRigidbody.AddForce((player.transform.forward * dropForce) + (player.transform.up * dropForce));
     }
 }
