@@ -10,7 +10,7 @@ public class CheckpointVolume : MonoBehaviour
 {
     [SerializeField] private int checkpointNumber = 0;
     [SerializeField] private Transform spawnPoint = null;
-    [SerializeField] private Collider collider = null;
+    [SerializeField] private new Collider collider = null;
 
     public Transform SpawnPoint => spawnPoint;
 

@@ -17,8 +17,8 @@ public class PickupableObject : MonoBehaviour
     private bool IsPickedUp => playerCurrentlyHolding != null;
     private Player playerCurrentlyHolding = null;
 
-    Transform originalParent;
-    Vector3 originalPosition;
+    private Transform originalParent;
+    private Vector3 originalPosition;
 
     private void Awake()
     {
@@ -66,7 +66,8 @@ public class PickupableObject : MonoBehaviour
         playerCurrentlyHolding = player;
         playerCurrentlyHolding.Animation.StartHoldingObject();
         myRigidbody.isKinematic = true;
-        myCollider.enabled = false;
+        myRigidbody.useGravity = false;
+        myCollider.isTrigger = true;
         transform.SetParent(player.transform);
         transform.DOLocalMove(offsetWhenPickedUp, pickingDuration);
     }
@@ -82,7 +83,8 @@ public class PickupableObject : MonoBehaviour
         if (resetPosition)
             transform.position = originalPosition;
         myRigidbody.isKinematic = false;
-        myCollider.enabled = true;
+        myRigidbody.useGravity = true;
+        myCollider.isTrigger = false;
         if (addForce)
             myRigidbody.AddForce((player.transform.forward * dropForce) + (player.transform.up * dropForce));
     }
