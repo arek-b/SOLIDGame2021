@@ -13,6 +13,8 @@ public class PuzzleActivator : MonoBehaviour
     [SerializeField] private GameObject _puzzleGlow;
     [SerializeField] private ItemProvider itemProvider = null;
     [SerializeField] private PickupableObject pickupableObject = null;
+    [SerializeField, Tooltip("Useful when puzzle is an object that can be used/activated multiple times.")]
+        private bool alwaysActive = false;
     private bool _activated = false;
     private bool _deactivated = false;
     private Player _playerScr;
@@ -23,7 +25,7 @@ public class PuzzleActivator : MonoBehaviour
     }
     void Update()
     {
-        if (_activated == true)
+        if (alwaysActive || _activated == true)
         {
             if (_playerScr != null && _playerScr.Death.IsDead)
             {
@@ -53,7 +55,7 @@ public class PuzzleActivator : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (_deactivated == false)
+        if (alwaysActive || _deactivated == false)
         {
             PlayerModelCollider playerModelCollider = other.GetComponent<PlayerModelCollider>();
             if (playerModelCollider != null)
@@ -67,7 +69,7 @@ public class PuzzleActivator : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
-        if (_deactivated == false)
+        if (alwaysActive || _deactivated == false)
         {
             if (other.GetComponent<PlayerModelCollider>())
             {

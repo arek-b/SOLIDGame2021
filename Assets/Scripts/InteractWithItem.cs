@@ -8,6 +8,10 @@ using UnityEngine;
 public class InteractWithItem : MonoBehaviour
 {
     /// <summary>
+    /// Reference to the main camera - required for interaction cue to hide
+    /// </summary>
+    [SerializeField] private Camera mainCamera = null;
+    /// <summary>
     /// Reference to the animator component (required)
     /// </summary>
     [Header("General settings")]
@@ -76,6 +80,16 @@ public class InteractWithItem : MonoBehaviour
     /// What item type should this object interact with?
     /// </summary>
     public ItemTypes ItemType => itemType;
+
+    /// <summary>
+    /// Is the interaction cue visible?
+    /// </summary>
+    private bool interactionCueVisible = false;
+
+    /// <summary>
+    /// Max raycast distance
+    /// </summary>
+    private const float MaxRayDistance = 100f;
 
     /// <summary>
     /// This is a Unity-provided function that runs when changing something
@@ -158,6 +172,7 @@ public class InteractWithItem : MonoBehaviour
             return;
 
         glow.SetActive(true);
+        interactionCueVisible = true;
     }
 
     private void HideInteractionCue()
@@ -166,10 +181,22 @@ public class InteractWithItem : MonoBehaviour
             return;
 
         glow.SetActive(false);
+        interactionCueVisible = false;
     }
 
-    private void OnMouseExit()
+    private void Update()
     {
+        if (!interactionCueVisible)
+            return;
+
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+        if (!Physics.Raycast(ray, out RaycastHit hit, MaxRayDistance))
+            return;
+
+        if (hit.collider.gameObject == gameObject)
+            return;
+
         HideInteractionCue();
     }
 }
