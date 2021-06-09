@@ -34,7 +34,7 @@ public class PlayerNavigation : MonoBehaviour
 
     public void LookAt(Transform target, float duration)
     {
-        Vector3 position = transform.position - target.position;
+        Vector3 position = target.position - transform.position;
         position.y = 0;
         Quaternion rotation = Quaternion.LookRotation(position);
         transform.DORotateQuaternion(rotation, duration);

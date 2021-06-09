@@ -19,11 +19,14 @@ public class PickupableObject : MonoBehaviour
 
     private Transform originalParent;
     private Vector3 originalPosition;
+    private Vector3 lastPosition;
+    private const float MaxDistance = 10f;
 
     private void Awake()
     {
         originalParent = transform.parent;
         originalPosition = transform.position;
+        lastPosition = originalPosition;
     }
 
     private void OnEnable()
@@ -35,6 +38,16 @@ public class PickupableObject : MonoBehaviour
         PlayerRespawn.PlayerWillRespawn -= PlayerRespawn_PlayerWillRespawn;
     }
 
+    private void Update()
+    {
+        // prevent glitching out
+        if (Vector3.Distance(myRigidbody.position, lastPosition) > MaxDistance)
+        {
+            ResetPosition();
+        }
+        lastPosition = myRigidbody.position;
+    }
+
     /// <summary>
     /// Resets the object when player is about to be respawned
     /// </summary>
@@ -43,7 +56,22 @@ public class PickupableObject : MonoBehaviour
         if (!IsPickedUp)
             return;
 
-        BeDropped(playerCurrentlyHolding, resetPosition: true, addForce: false);
+        ResetPosition();
+    }
+
+    private void ResetPosition()
+    {
+        if (playerCurrentlyHolding != null)
+        {
+            BeDropped(playerCurrentlyHolding, resetPosition: true, addForce: false);
+        }
+        else
+        {
+            myRigidbody.velocity = Vector3.zero;
+            myRigidbody.angularVelocity = Vector3.zero;
+            myRigidbody.position = originalPosition;
+            transform.position = originalPosition;
+        }
     }
 
     public void Interact(Player player)

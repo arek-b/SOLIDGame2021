@@ -8428,9 +8428,9 @@ MonoBehaviour:
   _timeRestart: 0
   _restartTime: 5
   _puzzleGlow: {fileID: 1065060316}
-  itemProvider: {fileID: 0}
-  pickupableObject: {fileID: 0}
-  alwaysActive: 0
+  _itemProvider: {fileID: 0}
+  _pickupableObject: {fileID: 0}
+  _alwaysActive: 0
 --- !u!135 &416142912
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9130,9 +9130,9 @@ MonoBehaviour:
   _timeRestart: 0
   _restartTime: 5
   _puzzleGlow: {fileID: 359026088}
-  itemProvider: {fileID: 0}
-  pickupableObject: {fileID: 0}
-  alwaysActive: 0
+  _itemProvider: {fileID: 0}
+  _pickupableObject: {fileID: 0}
+  _alwaysActive: 0
 --- !u!135 &460583977
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11916,9 +11916,9 @@ MonoBehaviour:
   _timeRestart: 0
   _restartTime: 5
   _puzzleGlow: {fileID: 1923742005}
-  itemProvider: {fileID: 650247590}
-  pickupableObject: {fileID: 0}
-  alwaysActive: 1
+  _itemProvider: {fileID: 650247590}
+  _pickupableObject: {fileID: 0}
+  _alwaysActive: 1
 --- !u!135 &650247592
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14156,9 +14156,9 @@ MonoBehaviour:
   _timeRestart: 0
   _restartTime: 5
   _puzzleGlow: {fileID: 749922012}
-  itemProvider: {fileID: 0}
-  pickupableObject: {fileID: 0}
-  alwaysActive: 0
+  _itemProvider: {fileID: 0}
+  _pickupableObject: {fileID: 0}
+  _alwaysActive: 0
 --- !u!1 &770730099
 GameObject:
   m_ObjectHideFlags: 0
@@ -14890,9 +14890,9 @@ MonoBehaviour:
   _timeRestart: 0
   _restartTime: 5
   _puzzleGlow: {fileID: 519402568}
-  itemProvider: {fileID: 814985218}
-  pickupableObject: {fileID: 0}
-  alwaysActive: 0
+  _itemProvider: {fileID: 0}
+  _pickupableObject: {fileID: 0}
+  _alwaysActive: 0
 --- !u!114 &814985218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19816,9 +19816,9 @@ MonoBehaviour:
   _timeRestart: 0
   _restartTime: 5
   _puzzleGlow: {fileID: 1471534511}
-  itemProvider: {fileID: 0}
-  pickupableObject: {fileID: 0}
-  alwaysActive: 0
+  _itemProvider: {fileID: 0}
+  _pickupableObject: {fileID: 0}
+  _alwaysActive: 0
 --- !u!135 &1115509285
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22024,9 +22024,9 @@ MonoBehaviour:
   _timeRestart: 0
   _restartTime: 5
   _puzzleGlow: {fileID: 1306118085}
-  itemProvider: {fileID: 0}
-  pickupableObject: {fileID: 178539882918728380}
-  alwaysActive: 1
+  _itemProvider: {fileID: 0}
+  _pickupableObject: {fileID: 178539882918728380}
+  _alwaysActive: 1
 --- !u!135 &1271043848
 SphereCollider:
   m_ObjectHideFlags: 0
