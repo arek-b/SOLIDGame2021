@@ -23,25 +23,28 @@ public class Puzzle : MonoBehaviour
     [SerializeField] private bool _keyUnlocked = true;
     [SerializeField] private List<bool> _keys;
     private int _keyCount = 0;
+    public bool Activated => _activated;
     public void Activate()
     {
         if (_keyUnlocked == true)
         {
+            _activated = true;
+
             if (_reveal == true && _revealTimed == false)
             {
-                UnCover(_revealedObjects);
+                UnCover(_revealedObjects, hide: false, reveal: true);
             }
             else if (_reveal == true && _revealTimed == true)
             {
-                StartCoroutine(UnCoverTimeOut(_revealedObjects, _revealTime));
+                StartCoroutine(UnCoverTimeOut(_revealedObjects, _revealTime, hide: false, reveal: true));
             }
             if (_hide == true && _hideTimed == false)
             {
-                UnCover(_hiddenObjects);
+                UnCover(_hiddenObjects, hide: true, reveal: false);
             }
             else if (_hide == true && _hideTimed == true)
             {
-                StartCoroutine(UnCoverTimeOut(_hiddenObjects, _hideTime));
+                StartCoroutine(UnCoverTimeOut(_hiddenObjects, _hideTime, hide: true, reveal: false));
             }
             if (_animate == true && _animateTimed == false)
             {
@@ -87,15 +90,15 @@ public class Puzzle : MonoBehaviour
             //Deanimate
         }
     }
-    public void UnCover(List<GameObject> gameObjects)
+    public void UnCover(List<GameObject> gameObjects, bool hide, bool reveal)
     {
         for (int i = 0; i < gameObjects.Count; i++)
         {
-            if (_hide == true)
+            if (hide == true)
             {
                 gameObjects[i].SetActive(false);
             }
-            if (_reveal == true)
+            if (reveal == true)
             {
                 gameObjects[i].SetActive(true);
             }
@@ -109,10 +112,10 @@ public class Puzzle : MonoBehaviour
             gameObjects[i].GetComponent<Animator>().enabled = true;
         }
     }
-    IEnumerator UnCoverTimeOut(List<GameObject> gameObjects, float time)
+    IEnumerator UnCoverTimeOut(List<GameObject> gameObjects, float time, bool hide, bool reveal)
     {
         yield return new WaitForSeconds(time);
-        UnCover(gameObjects);
+        UnCover(gameObjects, hide, reveal);
     }
     IEnumerator AnimateTimeOut(List<GameObject> gameObjects, float time)
     {

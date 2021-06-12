@@ -39,6 +39,11 @@ public class InteractWithItem : MonoBehaviour
     [SerializeField, Tooltip("Zero means unlimited")] int interactionCountLimit = 0;
 
     /// <summary>
+    /// Should a Puzzle be activated upon interaction?
+    /// </summary>
+    [SerializeField] Puzzle puzzleToActivate = null;
+
+    /// <summary>
     /// Use this array if object has multiple animations and different ones
     /// should be used depending on how many times player has interacted with
     /// the object.
@@ -121,8 +126,20 @@ public class InteractWithItem : MonoBehaviour
             StartCoroutine(DelayedAnimation());
         }
 
+        ActivatePuzzle();
         HideInteractionCue();
         interactionCount++;
+    }
+
+    private void ActivatePuzzle()
+    {
+        if (puzzleToActivate == null)
+            return;
+
+        if (puzzleToActivate.Activated)
+            return;
+
+        puzzleToActivate.Activate();
     }
 
     private void MultiAnimationInteract()
