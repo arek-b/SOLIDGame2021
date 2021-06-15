@@ -30,6 +30,13 @@ public class TeleportDoor : MonoBehaviour
         _obstacleWall.SetActive(true);
         yield return new WaitForSeconds(_teleportingTime);
         _enteringCanvasObj.SetActive(false);
-        _exitingCanvasObj.GetComponent<Animator>().SetTrigger("Fade");
+        if (!_exitingCanvasObj.activeSelf)
+            _exitingCanvasObj.SetActive(true);
+
+        Animator animator = _exitingCanvasObj.transform.parent.GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("Fade");
+        }
     }
 }

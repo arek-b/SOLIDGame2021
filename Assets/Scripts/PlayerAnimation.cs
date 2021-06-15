@@ -17,6 +17,7 @@ public class PlayerAnimation : MonoBehaviour
     private const string HoldingObjectFloatName = "HoldingObjectBlend";
     private const float HoldingObjectFloatDeactivated = 0f;
     private const float HoldingObjectFloatActivated = 1f;
+    private const float WalkingSpeed = 1.5f;
 
     private void Start()
     {
@@ -29,13 +30,13 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        if (agent.velocity.magnitude > 0 && !isWalking)
+        if (agent.velocity.magnitude >= WalkingSpeed && !isWalking)
         {
             isWalking = true;
             animator.SetBool(IsWalkingBoolName, true);
         }
 
-        if (agent.velocity.magnitude == 0 && isWalking)
+        if (agent.velocity.magnitude < WalkingSpeed && isWalking)
         {
             isWalking = false;
             animator.SetBool(IsWalkingBoolName, false);
