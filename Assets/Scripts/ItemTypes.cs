@@ -3,5 +3,6 @@
 /// </summary>
 public enum ItemTypes
 {
-    Rock
+    Rock,
+    Bucket
 }

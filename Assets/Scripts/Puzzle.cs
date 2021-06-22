@@ -109,7 +109,16 @@ public class Puzzle : MonoBehaviour
     {
         for (int i = 0; i < gameObjects.Count; i++)
         {
-            gameObjects[i].GetComponent<Animator>().enabled = true;
+            Animator animator = gameObjects[i].GetComponent<Animator>();
+            if (animator.enabled)
+            {
+                animator.Rebind();
+                animator.enabled = false;
+            }
+            else
+            {
+                animator.enabled = true;
+            }
         }
     }
     IEnumerator UnCoverTimeOut(List<GameObject> gameObjects, float time, bool hide, bool reveal)

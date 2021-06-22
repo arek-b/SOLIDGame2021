@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public PlayerRespawn Respawn { get; private set; }
     public PlayerAnimation Animation { get; private set; }
     public Animator Animator { get; private set; }
+    public Rigidbody Rigidbody { get; private set; }
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
         Respawn = GetComponent<PlayerRespawn>();
         Animation = GetComponent<PlayerAnimation>();
         Animator = GetComponent<Animator>();
+        Rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update()

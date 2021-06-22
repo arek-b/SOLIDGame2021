@@ -15,7 +15,7 @@ public class PlayerRespawn : MonoBehaviour
     public void RespawnAt(Vector3 worldPosition)
     {
         PlayerWillRespawn?.Invoke();
-        player.Navigation.NavMeshAgent.ResetPath();
         player.Navigation.NavMeshAgent.Warp(worldPosition);
+        player.Navigation.NavMeshAgent.ResetPath();
     }
 }

@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2ce7a0da43f5645b326b4c96dbcad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 0
-  itemName: Bucket
+  itemType: 1
+  itemName: Bucket with water
   animatorParameterType: 0
   parameterName: 

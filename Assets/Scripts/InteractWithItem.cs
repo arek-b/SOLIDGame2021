@@ -153,6 +153,9 @@ public class InteractWithItem : MonoBehaviour
 
     private IEnumerator DelayedAnimation()
     {
+        if (animator == null)
+            yield break;
+
         animator.enabled = false;
         animator.Rebind();
         yield return new WaitUntil(() => animationCoroutinesRunning == 0);
@@ -208,8 +211,11 @@ public class InteractWithItem : MonoBehaviour
 
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (!Physics.Raycast(ray, out RaycastHit hit, MaxRayDistance))
+        if (!Physics.Raycast(ray, out RaycastHit hit, MaxRayDistance, layerMask: 1 << 0, QueryTriggerInteraction.Ignore))
+        {
+            HideInteractionCue();
             return;
+        }
 
         if (hit.collider.gameObject == gameObject)
             return;

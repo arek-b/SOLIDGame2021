@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 136276878130895934}
   - component: {fileID: 136276878130895933}
   - component: {fileID: 136276878130895932}
+  - component: {fileID: 1675771561433901886}
   m_Layer: 0
   m_Name: RoofBlade
   m_TagString: Untagged
@@ -95,3 +96,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02653329, y: 0.16138077, z: 0.06316495}
   m_Center: {x: -0.00000047683716, y: 0.000000029802326, z: 0.0151534695}
+--- !u!114 &1675771561433901886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136276878130895930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50b91debc67f0724ea1528f731aca6f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

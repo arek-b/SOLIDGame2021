@@ -50,7 +50,7 @@ public class PlayerItemInteraction : MonoBehaviour
 
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (!Physics.Raycast(ray, out RaycastHit hit, MaxRayDistance))
+        if (!Physics.Raycast(ray, out RaycastHit hit, MaxRayDistance, layerMask: 1 << 0, QueryTriggerInteraction.Ignore))
             return;
 
         InteractWithItem currentSubject = hit.collider.gameObject.GetComponent<InteractWithItem>();
