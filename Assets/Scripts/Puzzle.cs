@@ -26,7 +26,7 @@ public class Puzzle : MonoBehaviour
     public bool Activated => _activated;
     public void Activate()
     {
-        if (_keyUnlocked == true)
+        if (_keyUnlocked)
         {
             _activated = true;
 
@@ -74,6 +74,7 @@ public class Puzzle : MonoBehaviour
             {
                 _keyUnlocked = true;
                 Activate();
+                break; // activate ONCE
             }
         }
     }
