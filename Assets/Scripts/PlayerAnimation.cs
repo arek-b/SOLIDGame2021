@@ -12,9 +12,9 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private Animator animator = null;
 
     private bool isWalking = false;
-    private const string IsWalkingBoolName = "IsWalking";
-    private const string PickUpObjectTriggerName = "PickUpObject";
-    private const string HoldingObjectFloatName = "HoldingObjectBlend";
+    private readonly int isWalkingBool = Animator.StringToHash("IsWalking");
+    private readonly int pickUpObjectTrigger = Animator.StringToHash("PickUpObject");
+    private readonly int holdingObjectFloat = Animator.StringToHash("HoldingObjectBlend");
     private const float HoldingObjectFloatDeactivated = 0f;
     private const float HoldingObjectFloatActivated = 1f;
     private const float WalkingSpeed = 1.5f;
@@ -33,24 +33,24 @@ public class PlayerAnimation : MonoBehaviour
         if (agent.velocity.magnitude >= WalkingSpeed && !isWalking)
         {
             isWalking = true;
-            animator.SetBool(IsWalkingBoolName, true);
+            animator.SetBool(isWalkingBool, true);
         }
 
         if (agent.velocity.magnitude < WalkingSpeed && isWalking)
         {
             isWalking = false;
-            animator.SetBool(IsWalkingBoolName, false);
+            animator.SetBool(isWalkingBool, false);
         }
     }
 
     public void StartHoldingObject()
     {
-        animator.SetTrigger(PickUpObjectTriggerName);
-        animator.SetFloat(HoldingObjectFloatName, HoldingObjectFloatActivated);
+        animator.SetTrigger(pickUpObjectTrigger);
+        animator.SetFloat(holdingObjectFloat, HoldingObjectFloatActivated);
     }
 
     public void StopHoldingObject()
     {
-        animator.SetFloat(HoldingObjectFloatName, HoldingObjectFloatDeactivated);
+        animator.SetFloat(holdingObjectFloat, HoldingObjectFloatDeactivated);
     }
 }

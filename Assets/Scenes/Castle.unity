@@ -2211,7 +2211,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 136276878130895930, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_Name
-      value: RoofBlade (5)
+      value: RoofBlade
       objectReference: {fileID: 0}
     - target: {fileID: 136276878130895931, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_RootOrder
@@ -3175,7 +3175,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 136276878130895930, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_Name
-      value: RoofBlade (4)
+      value: RoofBlade
       objectReference: {fileID: 0}
     - target: {fileID: 136276878130895931, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_RootOrder
@@ -11694,7 +11694,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 136276878130895930, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_Name
-      value: RoofBlade (5)
+      value: RoofBlade
       objectReference: {fileID: 0}
     - target: {fileID: 136276878130895931, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_RootOrder
@@ -18549,7 +18549,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 136276878130895930, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_Name
-      value: RoofBlade (3)
+      value: RoofBlade
       objectReference: {fileID: 0}
     - target: {fileID: 136276878130895931, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_RootOrder
@@ -21259,7 +21259,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 136276878130895930, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_Name
-      value: RoofBlade (2)
+      value: RoofBlade
       objectReference: {fileID: 0}
     - target: {fileID: 136276878130895931, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_RootOrder
@@ -21328,7 +21328,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 136276878130895930, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_Name
-      value: RoofBlade (1)
+      value: RoofBlade
       objectReference: {fileID: 0}
     - target: {fileID: 136276878130895931, guid: 39f53e3ba8679344aba2105c9ac8cea0, type: 3}
       propertyPath: m_RootOrder

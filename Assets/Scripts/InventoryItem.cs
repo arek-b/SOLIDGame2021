@@ -11,9 +11,15 @@ public class InventoryItem : MonoBehaviour
     [Header("Settings for player's Animator")]
     [SerializeField] private AnimatorParameterTypes animatorParameterType = default;
     [SerializeField] private string parameterName = default;
+    private int parameter;
     private enum AnimatorParameterTypes { Trigger, Bool }
     public ItemTypes ItemType { get => itemType; }
     public string ItemName => itemName == string.Empty ? itemType.ToString() : itemName;
+
+    private void Awake()
+    {
+        parameter = Animator.StringToHash(parameterName);
+    }
 
     public void TriggerAnimationOnPlayer(Player player, float delay)
     {
@@ -33,10 +39,10 @@ public class InventoryItem : MonoBehaviour
         switch(animatorParameterType)
         {
             case AnimatorParameterTypes.Trigger:
-                player.Animator.SetTrigger(parameterName);
+                player.Animator.SetTrigger(parameter);
                 break;
             case AnimatorParameterTypes.Bool:
-                player.Animator.SetBool(parameterName, value: true);
+                player.Animator.SetBool(parameter, value: true);
                 break;
         }
     }
