@@ -24,9 +24,11 @@ public class Puzzle : MonoBehaviour
     [SerializeField] private List<bool> _keys;
     private int _keyCount = 0;
     public bool Activated => _activated;
+    public bool lockedBMP = false;
+    //[SerializeField] private Audio _unlocked; //activation sound
     public void Activate()
     {
-        if (_keyUnlocked)
+        if (_keyUnlocked == true && lockedBMP == false)
         {
             _activated = true;
 

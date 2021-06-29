@@ -11,6 +11,7 @@ public class PuzzleActivator : MonoBehaviour
     [SerializeField] private bool _timeRestart = false;
     [SerializeField] private float _restartTime = 5f;
     [SerializeField] private GameObject _puzzleGlow;
+    [SerializeField] private GameObject _missingSomethingGlow;
     [SerializeField] private ItemProvider _itemProvider = null;
     [SerializeField] private PickupableObject _pickupableObject = null;
     [SerializeField, Tooltip("Useful when puzzle is an object that can be used/activated multiple times.")]
@@ -19,6 +20,8 @@ public class PuzzleActivator : MonoBehaviour
     private bool _deactivated = false;
     private Player _playerScr;
     private Puzzle _puzzle;
+    [SerializeField] private bool _puzzlePiecesRequired = false;
+    [SerializeField] private int _puzzlePieceNumber = 0;
     private void Start()
     {
         _puzzle = _puzzlePiece.GetComponent<Puzzle>();
@@ -48,6 +51,7 @@ public class PuzzleActivator : MonoBehaviour
 
                 if (_itemProvider != null && _playerScr != null)
                 {
+                    _playerScr.GetComponent<PlayerInventoryList>().GetPuzzlePiece(_puzzlePieceNumber);
                     _itemProvider.GiveItem(_playerScr);
                 }
 
@@ -67,10 +71,28 @@ public class PuzzleActivator : MonoBehaviour
             {
                 _playerScr = playerModelCollider.Player;
 
-                _puzzleGlow.SetActive(true);
-                _activated = true;
+                if (_puzzlePiecesRequired == true)
+                {
+                    if( _puzzlePieceNumber == _playerScr.GetComponent<PlayerInventoryList>().puzzlePieceNumber)
+                    {
+                        Activate();
+                    }
+                    else
+                    {
+                        _missingSomethingGlow.SetActive(true);
+                    }
+                }
+                else
+                {
+                    Activate();
+                }
             }
         }
+    }
+    void Activate()
+    {
+        _puzzleGlow.SetActive(true);
+        _activated = true;
     }
     void OnTriggerExit(Collider other)
     {
@@ -78,7 +100,8 @@ public class PuzzleActivator : MonoBehaviour
         {
             if (other.GetComponent<PlayerModelCollider>())
             {
-                _activated = false;
+                _activated = false; 
+                _missingSomethingGlow.SetActive(false);
                 _puzzleGlow.SetActive(false);
             }
         }
