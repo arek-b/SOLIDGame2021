@@ -76,6 +76,7 @@ public class Puzzle : MonoBehaviour
             {
                 _keyUnlocked = true;
                 Activate();
+                Reanimate(_animatedObjects);
                 break; // activate ONCE
             }
         }
@@ -90,7 +91,7 @@ public class Puzzle : MonoBehaviour
         }
         if(_keyUnlocked == true)
         {
-            //Deanimate
+            Deanimate(_animatedObjects);
         }
     }
     public void UnCover(List<GameObject> gameObjects, bool hide, bool reveal)
@@ -122,6 +123,24 @@ public class Puzzle : MonoBehaviour
             {
                 animator.enabled = true;
             }
+        }
+    }
+    public void Deanimate(List<GameObject> gameObjects)
+    {
+        UnCover(_revealedObjects, hide: true, reveal: false);
+        for (int i = 0; i < gameObjects.Count; i++)
+        {
+            Animator animator = gameObjects[i].GetComponent<Animator>();
+            animator.SetBool("Close", true);
+        }
+    }
+    public void Reanimate(List<GameObject> gameObjects)
+    {
+        UnCover(_revealedObjects, hide: false, reveal: true);
+        for (int i = 0; i < gameObjects.Count; i++)
+        {
+            Animator animator = gameObjects[i].GetComponent<Animator>();
+            animator.SetBool("Close", false);
         }
     }
     IEnumerator UnCoverTimeOut(List<GameObject> gameObjects, float time, bool hide, bool reveal)

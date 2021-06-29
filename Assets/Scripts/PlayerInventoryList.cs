@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInventoryList : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _puzzlePieces;
-    public int puzzlePieceNumber = 0;
+    public int puzzlePieceNumber = 5;
     public void GetPuzzlePiece(int puzzlePiece)
     {
         puzzlePieceNumber = puzzlePiece;

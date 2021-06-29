@@ -21,6 +21,8 @@ public class PuzzleActivator : MonoBehaviour
     private Player _playerScr;
     private Puzzle _puzzle;
     [SerializeField] private bool _puzzlePiecesRequired = false;
+    [SerializeField] private bool _givesItem = false;
+    [SerializeField] private bool _takesItem = false;
     [SerializeField] private int _puzzlePieceNumber = 0;
     private void Start()
     {
@@ -55,6 +57,15 @@ public class PuzzleActivator : MonoBehaviour
                     _itemProvider.GiveItem(_playerScr);
                 }
 
+                if (_givesItem == true)
+                {
+                    _playerScr.GetComponent<PlayerInventoryList>().GetPuzzlePiece(_puzzlePieceNumber);
+                }
+                if (_takesItem == true)
+                {
+                    _playerScr.GetComponent<PlayerInventoryList>().GetPuzzlePiece(5);
+                }
+
                 if (_pickupableObject != null && _playerScr != null)
                 {
                     _pickupableObject.Interact(_playerScr);
@@ -73,7 +84,7 @@ public class PuzzleActivator : MonoBehaviour
 
                 if (_puzzlePiecesRequired == true)
                 {
-                    if( _puzzlePieceNumber == _playerScr.GetComponent<PlayerInventoryList>().puzzlePieceNumber)
+                    if(_puzzlePieceNumber == _playerScr.GetComponent<PlayerInventoryList>().puzzlePieceNumber)
                     {
                         Activate();
                     }
@@ -101,8 +112,11 @@ public class PuzzleActivator : MonoBehaviour
             if (other.GetComponent<PlayerModelCollider>())
             {
                 _activated = false; 
-                _missingSomethingGlow.SetActive(false);
                 _puzzleGlow.SetActive(false);
+                if (_puzzlePiecesRequired == true)
+                {
+                    _missingSomethingGlow.SetActive(false);
+                }
             }
         }
     }
