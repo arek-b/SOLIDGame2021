@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls four cubes on the map and how player can obtain them.
+/// </summary>
 public class CubeActivator : MonoBehaviour
 {
     [SerializeField] private int _cubeNumber = 0;

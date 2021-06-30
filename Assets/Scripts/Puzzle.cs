@@ -107,7 +107,6 @@ public class Puzzle : MonoBehaviour
                 gameObjects[i].SetActive(true);
             }
         }
-        Debug.Log("Hejo!");
     }
     public void Animate(List<GameObject> gameObjects)
     {

@@ -23,7 +23,10 @@ public class PuzzleActivator : MonoBehaviour
     [SerializeField] private bool _puzzlePiecesRequired = false;
     [SerializeField] private bool _givesItem = false;
     [SerializeField] private bool _takesItem = false;
+    [SerializeField] private bool _givesMightyCube = false;
     [SerializeField] private int _puzzlePieceNumber = 0;
+    private int _emptyPieceNumber = 5;
+    [SerializeField] private AudioSource _pickUpSFX;
     private void Start()
     {
         _puzzle = _puzzlePiece.GetComponent<Puzzle>();
@@ -40,6 +43,7 @@ public class PuzzleActivator : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 _puzzle.Activate();
+                _pickUpSFX.Play();
 
                 if (!_alwaysActive)
                 {
@@ -61,9 +65,15 @@ public class PuzzleActivator : MonoBehaviour
                 {
                     _playerScr.GetComponent<PlayerInventoryList>().GetPuzzlePiece(_puzzlePieceNumber);
                 }
+
                 if (_takesItem == true)
                 {
-                    _playerScr.GetComponent<PlayerInventoryList>().GetPuzzlePiece(5);
+                    _playerScr.GetComponent<PlayerInventoryList>().GetPuzzlePiece(_emptyPieceNumber);
+                }
+
+                if (_givesMightyCube == true)
+                {
+                    _playerScr.GetComponent<PlayerCubeCollection>().GetACube(_puzzlePieceNumber);
                 }
 
                 if (_pickupableObject != null && _playerScr != null)

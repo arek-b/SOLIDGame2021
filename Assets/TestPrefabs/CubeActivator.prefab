@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 7477169422275276359}
   - component: {fileID: 7477169422275276360}
   - component: {fileID: 7477169422275276358}
-  - component: {fileID: 485925858630158266}
+  - component: {fileID: 4869712985407242407}
   m_Layer: 0
   m_Name: CubeActivator
   m_TagString: Untagged
@@ -146,9 +146,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 2, z: 1.5}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &485925858630158266
+--- !u!114 &4869712985407242407
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,12 +157,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7477169422275276361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ed3cbb5722410545b1f17e8ecb757b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 12132e7ad1177734eb3c369f7a351cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubeNumber: 0
-  _puzzleGlow: {fileID: 7477169422782261917}
   _puzzlePiece: {fileID: 0}
+  _timeRestart: 0
+  _restartTime: 5
+  _puzzleGlow: {fileID: 7477169422782261917}
+  _missingSomethingGlow: {fileID: 0}
+  _itemProvider: {fileID: 0}
+  _pickupableObject: {fileID: 0}
+  _alwaysActive: 0
+  _puzzlePiecesRequired: 0
+  _givesItem: 0
+  _takesItem: 0
+  _givesMightyCube: 1
+  _puzzlePieceNumber: 0
 --- !u!1 &7477169422782261917
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,10 +215,10 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0.88550174, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.9898968, b: 1, a: 1}
   m_Intensity: 25
-  m_Range: 5
-  m_SpotAngle: 30
+  m_Range: 3
+  m_SpotAngle: 60
   m_InnerSpotAngle: 3
   m_CookieSize: 10
   m_Shadows:
@@ -240,7 +250,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
