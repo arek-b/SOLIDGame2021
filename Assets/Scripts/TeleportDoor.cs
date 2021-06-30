@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Teleports player in-between locked-in scenes.
+/// </summary>
 public class TeleportDoor : MonoBehaviour
 {
     [SerializeField] private Transform _playerTransform;
@@ -17,7 +20,6 @@ public class TeleportDoor : MonoBehaviour
         if (player != null)
         {
             _playerTransform = player.Player.transform; 
-            //_playerTransform = other.transform;
             _enteringCanvasObj.SetActive(true);
             _obstacleWall.SetActive(false);
             player.Player.Respawn.RespawnAt(_exitPoint.transform.position);
@@ -26,7 +28,6 @@ public class TeleportDoor : MonoBehaviour
     }
     IEnumerator Teleport()
     {
-        //_playerTransform = _entryPoint;
         _obstacleWall.SetActive(true);
         yield return new WaitForSeconds(_teleportingTime);
         _enteringCanvasObj.SetActive(false);

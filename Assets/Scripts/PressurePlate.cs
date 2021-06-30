@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Pressure plate interacting with heavy objects.
+/// </summary>
 public class PressurePlate : MonoBehaviour
 {
     [SerializeField] private GameObject _puzzlePiece;
